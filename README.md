@@ -2,6 +2,8 @@
 
 Work in progress, tree sitter uses a simple grammar to build a GLR parser that can produce ASTs.
 
+See `grammar.js` for the parser logic.
+
 View file input:
 ```lookml
 view: orders {
