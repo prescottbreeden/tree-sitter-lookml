@@ -11,6 +11,21 @@
   "license": "ISC",
   "dependencies": {
     "nan": "^2.18.0",
+    "tree-sitter": "^0.20.6",
     "tree-sitter-cli": "^0.21.0"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.lkml",
+      "file-types": [
+        "lkml"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "indents": [
+        "queries/indents.scm"
+      ]
+    }
+  ]
 }

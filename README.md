@@ -29,7 +29,7 @@ The example below is from google cloud docs.
 View file input: `./examples/sample_docs_file.lkml`
 
 Parser output:
-```
+```scm
 (source_file [0, 0] - [76, 0]
   (comment [0, 0] - [0, 38])
   (comment [1, 0] - [1, 38])
