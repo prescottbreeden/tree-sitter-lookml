@@ -1,6 +1,6 @@
 # LookML tree-sitter parser
 
-Work in progress, tree sitter uses a simple grammar to build a GLR parser that can produce ASTs.
+Work in progress, tree sitter uses a simple grammar to build a GLR parser that can produce ASTs and validate LookML.
 
 See `grammar.js` for the parser logic.
 
