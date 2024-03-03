@@ -46,6 +46,63 @@
     }
   },
   {
+    "type": "dimension_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "sql",
+          "named": true
+        },
+        {
+          "type": "timeframes",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dot_walked_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "drill_fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier_with_asterisk",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "explore",
     "named": true,
     "fields": {},
@@ -59,6 +116,55 @@
         },
         {
           "type": "join",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dot_walked_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "field_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier_with_asterisk",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -99,6 +205,37 @@
     }
   },
   {
+    "type": "measure",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "drill_fields",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "sql",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "value_format",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "primary_key",
     "named": true,
     "fields": {},
@@ -106,6 +243,25 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "set",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fields",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -171,6 +327,21 @@
     }
   },
   {
+    "type": "timeframes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type",
     "named": true,
     "fields": {},
@@ -213,14 +384,46 @@
           "named": true
         },
         {
+          "type": "dimension_group",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "measure",
+          "named": true
+        },
+        {
+          "type": "set",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ";;",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -236,12 +439,24 @@
     "named": false
   },
   {
+    "type": "dimension_group:",
+    "named": false
+  },
+  {
+    "type": "drill_fields:",
+    "named": false
+  },
+  {
     "type": "explore:",
     "named": false
   },
   {
     "type": "expression",
     "named": true
+  },
+  {
+    "type": "fields:",
+    "named": false
   },
   {
     "type": "identifier",
@@ -256,7 +471,15 @@
     "named": false
   },
   {
+    "type": "measure:",
+    "named": false
+  },
+  {
     "type": "primary_key:",
+    "named": false
+  },
+  {
+    "type": "set:",
     "named": false
   },
   {
@@ -270,6 +493,10 @@
   {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "timeframes:",
+    "named": false
   },
   {
     "type": "type:",

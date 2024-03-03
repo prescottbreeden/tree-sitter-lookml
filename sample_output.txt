@@ -1,35 +1,3 @@
-# LookML tree-sitter parser
-
-Work in progress, tree sitter uses a simple grammar to build a GLR parser that can produce ASTs.
-
-See `grammar.js` for the parser logic.
-
-## Sample LookML syntax
-```lookml
-view: orders {
-  dimension: id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.id ;;
-  }
-  dimension: customer_id {      # field: orders.customer_id
-    sql: ${TABLE}.customer_id ;;
-  }
-  dimension: amount {           # field: orders.amount
-    type: number
-    value_format: "0.00"
-    sql: ${TABLE}.amount ;;
-  }
-}
-```
-
-## Samples
-The example below is from google cloud docs.
-
-View file input: `./examples/sample_docs_file.lkml`
-
-Parser output:
-```
 (source_file [0, 0] - [76, 0]
   (comment [0, 0] - [0, 38])
   (comment [1, 0] - [1, 38])
@@ -167,4 +135,3 @@ Parser output:
             (identifier [72, 24] - [72, 30])
             (identifier [72, 31] - [72, 36]))))
       (comment [72, 39] - [72, 101]))))
-```

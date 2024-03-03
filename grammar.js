@@ -1,3 +1,9 @@
+// helpers
+function commaSeparated(rule) {
+  return seq(rule, repeat(seq(',', rule)))
+}
+
+// Grammar rules
 module.exports = grammar({
   name: 'lookml',
 
@@ -52,7 +58,7 @@ module.exports = grammar({
       'view:',
       $.identifier,
       '{',
-      repeat($.dimension),
+      repeat(choice($.dimension, $.dimension_group, $.measure, $.set)),
       '}',
     ),
 
@@ -60,38 +66,68 @@ module.exports = grammar({
       'dimension:',
       $.identifier,
       '{',
-      repeat(choice(
-        $.primary_key,
-        $.type,
-        $.sql,
-        $.value_format,
-      )),
+      repeat(
+        choice(
+          $.primary_key,
+          $.sql,
+          $.type,
+          $.value_format,
+        )
+      ),
       '}',
     ),
 
-    // --[ dimension fields ]--------------------------------------------------
-    primary_key: $ => seq(
-      'primary_key:',
+    dimension_group: $ => seq(
+      'dimension_group:',
       $.identifier,
+      '{',
+      repeat(choice($.sql, $.timeframes, $.type)),
+      '}',
     ),
-    type: $ => seq(
-      'type:',
+
+    measure: $ => seq(
+      'measure:',
       $.identifier,
+      '{',
+      repeat(choice($.drill_fields, $.sql, $.type, $.value_format)),
+      '}',
     ),
-    sql: $ => seq(
-      'sql:',
-      $.expression,
-      ';;'
+
+    set: $ => seq('set:', $.identifier, '{', $.fields, '}'),
+
+    // --[ field properties ]--------------------------------------------------
+    // update with specific allowed tokens
+
+    primary_key: $ => seq('primary_key:', $.identifier),
+    type: $ => seq('type:', $.identifier),
+    sql: $ => seq('sql:', $.expression, ';;'),
+    value_format: $ => seq( 'value_format:', $.string),
+    drill_fields: $ => seq(
+      'drill_fields:',
+      '[',
+      commaSeparated($.identifier_with_asterisk),
+      ']'
     ),
-    value_format: $ => seq(
-      'value_format:',
-      $.string,
+    fields: $ => seq(
+      'fields:',
+      '[',
+      commaSeparated($.field_identifier),
+      ']',
+    ),
+    timeframes: $ => seq(
+      'timeframes:',
+      '[',
+      commaSeparated($.identifier),
+      ']',
     ),
 
     // --[ miscellaneous ]-----------------------------------------------------
     comment: () => /#.*/,
+    dot_walked_identifier: $ => seq($.identifier, '.', $.identifier),
+    expression: () => /[^;]+/, // use SQL grammar (github.com/DerekStride/tree-sitter-sql)
+    field_identifier: $ => choice($.identifier, $.dot_walked_identifier),
     identifier: () => /[a-zA-Z_][a-zA-Z0-9_]*/,
+    identifier_with_asterisk: $ => seq($.identifier, optional('*')),
     string: () => /"[^"\n]*"/,
-    expression: () => /[^;]+/,
   }
 });

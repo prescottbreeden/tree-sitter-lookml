@@ -1,7 +1,3 @@
-#############################################################
-# FILE: customers.view.lkml                                 #
-# Define the dimensions and measures for the CUSTOMERS view #
-#############################################################
 view: customers {
   dimension: id {
     primary_key: yes
